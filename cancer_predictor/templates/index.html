@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Breat Cancer Predictor</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap" rel="stylesheet">
+</head>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Ubuntu', sans-serif;
+        width: 100%;
+        height: 100%;
+        font-weight: bolder;
+    }
+
+    .container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+
+    }
+
+    input {
+        margin: 0px 10px;
+        border-radius: 10px;
+        text-align: center;
+    }
+
+    .item {
+        display: flex;
+        margin: 12px 12px;
+
+    }
+
+     .item input {
+        margin-top: 5xp;
+        font-size: larger;
+        
+        width: 150%;
+        padding: 2px;
+       
+    }
+
+    .item button{
+        padding: 5px;
+        font-size: larger;
+        
+        width: 300%;
+        border-radius: 15px;
+        background-color: black;
+        color: white;
+        cursor: pointer;
+       
+    }
+
+    .container::before {
+    content: ""; 
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image:url(https://images.pexels.com/photos/5149754/pexels-photo-5149754.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940);
+    background-size: cover;
+    opacity: .4;
+  
+    z-index: -1;
+
+}
+
+</style>
+
+<body>
+    <div class="container">
+        <h1>Breast Cancer Predictor</h1>
+        <form method="POST", action="{{url_for('home')}}" >
+            <div class="item">
+                Radius_mean <input type="number" placeholder="range(6.981 - 28.11)" name="radius_mean" value="{{ request.form['radius_mean'] }}">
+            </div>
+
+            <div class="item">
+                Texture_mean <input type="number" placeholder="range(9.71 - 39.28)" name="texture_mean" value="{{ request.form['texture_mean'] }}">
+            </div>
+            <div class="item">
+                Smoothness_mean <input type="number" placeholder="range(0.0526 - 0.1634)" name="smoothness_mean" value="{{ request.form['smoothness_mean'] }}"></div>
+            <div class="item">
+                Compactness_mean <input type="number" placeholder="range(0.0193 - 0.3454)" name="compactness_mean" value="{{ request.form['compactness_mean'] }}"></div>
+            <div class="item">
+                Concavity_mean <input type="number" placeholder="range(0.0 - 0.4268)" name="concavity_mean" value="{{ request.form['concavity_mean'] }}"></div>
+            <div class="item">
+                Symmetry_mean <input type="number" placeholder="range(0.106 - 0.304)" name="symmetry_mean" value="{{ request.form['symmetry_mean'] }}"></div>
+            <div class="item">
+                Fractal_dimension_mean <input type="number" placeholder="range(60.049 - 0.097)" name="fractal_dimension_mean" value="{{ request.form['fractal_dimension_mean'] }}">
+            </div>
+            <div class="item" >
+                <button type="submit"> Check your status</button>
+            </div>
+
+            
+
+            <div class="item">
+                {%if data == 1%}
+
+                <h1> Result : Malignant</h1>
+
+                {%elif data == 0 %}
+                <h1> Result &nbsp; &nbsp; &nbsp;: &nbsp; &nbsp; &nbsp; Benign</h1>
+               
+                {%endif%}
+            </div>
+
+        </form>
+    </div>
+</body>
+
+</html>
